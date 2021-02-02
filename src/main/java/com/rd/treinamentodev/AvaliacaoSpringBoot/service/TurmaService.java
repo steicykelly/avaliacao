@@ -13,6 +13,7 @@ import com.rd.treinamentodev.AvaliacaoSpringBoot.repository.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +33,50 @@ public class TurmaService {
         List<TurmaEntity> listEntity = turmaRepository.findAll();
         List<TurmaDTO> listDTO = new ArrayList<>();
 
-        //TODO implementar a conversão da lista de objetos de TurmaEntity para TurmaDTO e retornar a listDTO preenchida
+        for(TurmaEntity turmaEntity : listEntity){
+            TurmaDTO turmaDTO = new TurmaDTO();
 
+            turmaDTO.setDtInicio(turmaEntity.getDtInicio());
+            turmaDTO.setDtFim(turmaEntity.getDtFinal());
 
+            //Curso
+//            CursoDTO cursoDTO = turmaDTO.getCurso();
+//            turmaDTO.setCurso(turmaEntity.getCurso());
 
+            //Instrutores
+            List<InstrutorEntity> instrutoresEntity = turmaEntity.getInstrutores();
+
+            List<InstrutorDTO> intrutoresDTO = new ArrayList<>();
+
+            for(InstrutorEntity instrutorEntity : instrutoresEntity){
+                InstrutorDTO instrutorDTO = new InstrutorDTO();
+                instrutorDTO.setNome(instrutorEntity.getNomeInstrutor());
+                instrutorDTO.setValorHora(instrutorEntity.getValorHora());
+
+                intrutoresDTO.add(instrutorDTO);
+            }
+
+            turmaDTO.setInstrutores(intrutoresDTO);
+
+            //Alunos
+            List<AlunoEntity> alunosEntity = turmaEntity.getAlunos();
+
+            List<AlunoDTO> alunosDTO = new ArrayList<>();
+
+            for(AlunoEntity alunoEntity : alunosEntity){
+                AlunoDTO alunoDTO = new AlunoDTO();
+                alunoDTO.setNome(alunoEntity.getNomeAluno());
+                alunoDTO.setCpf(alunoEntity.getCpf());
+
+                alunosDTO.add(alunoDTO);
+            }
+
+            turmaDTO.setAlunos(alunosDTO);
+
+            listDTO.add(turmaDTO);
+        }
 
         return listDTO;
     }
+
 }

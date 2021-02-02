@@ -15,7 +15,11 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @PostMapping("/aluno")
-    public ResponseEntity gravar(@RequestBody AlunoDTO alunoDTO){
+    public ResponseEntity gravar(@RequestBody AlunoDTO alunoDTO) {
+        //if () {
+    //      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Já existe um cadastro para o cpf informado.");
+    //    }
         return alunoService.gravar(alunoDTO);
+
     }
 }

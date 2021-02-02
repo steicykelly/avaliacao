@@ -14,7 +14,9 @@ public class TurmaController {
 
     @GetMapping("/turmas")
     public ResponseEntity listar(){
+
         return ResponseEntity.ok().body(service.listar());
+
     }
 
 }

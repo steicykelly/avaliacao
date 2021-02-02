@@ -3,21 +3,21 @@ package com.rd.treinamentodev.AvaliacaoSpringBoot.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.math.BigInteger;
 
 @Entity
-@Table(name = "TB_CURSO")
+@Table(name = "tb_curso")
 @Data
 public class CursoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CURSO")
-    private Long idCurso;
+    @Column(name = "id_curso")
+    private BigInteger idCurso;
 
-    @Column(name = "DS_CURSO")
+    @Column(name = "ds_curso")
     private String nomeCurso;
 
-    @Column(name = "NR_CARGA_HORARIA")
+    @Column(name = "nr_carga_horaria")
     private Integer nrCargaHoraria;
 }
